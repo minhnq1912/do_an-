@@ -1,0 +1,122 @@
+
+from PyQt5.QtGui import QDesktopServices
+from PyQt5.QtCore import QUrl
+from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+
+
+class VideoPlayer(QMainWindow):
+    def __init__(self, parent=None):
+        super(VideoPlayer, self).__init__(parent)
+
+        # Tạo widget QWebEngineView để hiển thị video
+        self.webview = QWebEngineView(self)
+        self.setCentralWidget(self.webview)
+
+        # Nhúng link video vào QWebEngineView
+        self.webview.load(QUrl("https://www.youtube.com/embed/9H2SptcMzwI"))
+        # Đặt kích thước của QWebEngineView
+        self.webview.setFixedSize(1000, 880)
+
+
+class Ui_MainWindow(object):
+
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(1500, 1000)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
+        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 1500, 1000))
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.ung_dung_tu_van = QtWidgets.QLabel(self.tab)
+        self.ung_dung_tu_van.setGeometry(QtCore.QRect(520, 20, 741, 101))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(22)
+        font.setBold(True)
+        font.setWeight(75)
+        self.ung_dung_tu_van.setFont(font)
+        self.ung_dung_tu_van.setObjectName("ung_dung_tu_van")
+        self.chon_tinh_thanh = QtWidgets.QGroupBox(self.tab)
+        self.chon_tinh_thanh.setGeometry(QtCore.QRect(200, 130, 1151, 171))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.chon_tinh_thanh.setFont(font)
+        self.chon_tinh_thanh.setObjectName("chon_tinh_thanh")
+        self.comboBox_tinhthanh = QtWidgets.QComboBox(self.chon_tinh_thanh)
+        self.comboBox_tinhthanh.setGeometry(QtCore.QRect(530, 50, 251, 51))
+        self.comboBox_tinhthanh.setObjectName("comboBox_tinhthanh")
+        self.comboBox_tinhthanh.addItem("")
+        self.comboBox_tinhthanh.addItem("")
+        self.comboBox_tinhthanh.addItem("")
+        self.tinh_thanh = QtWidgets.QLabel(self.chon_tinh_thanh)
+        self.tinh_thanh.setGeometry(QtCore.QRect(280, 60, 251, 31))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        self.tinh_thanh.setFont(font)
+        self.tinh_thanh.setObjectName("tinh_thanh")
+        self.thong_tin = QtWidgets.QGroupBox(self.tab)
+        self.thong_tin.setGeometry(QtCore.QRect(190, 330, 1161, 550))
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        font.setBold(True)
+        font.setWeight(75)
+        self.thong_tin.setFont(font)
+        self.thong_tin.setObjectName("thong_tin")
+        self.chi_tiet = QtWidgets.QPushButton(self.thong_tin)
+        self.chi_tiet.setGeometry(QtCore.QRect(840, 450, 191, 61))
+
+        self.chi_tiet.setObjectName("chi_tiet")
+        self.chi_tiet.clicked.connect(self.open_url)
+
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setObjectName("tab_2")
+        self.tabWidget.addTab(self.tab_2, "")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1500, 18))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        self.tabWidget.setCurrentIndex(0)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.ung_dung_tu_van.setText(_translate("MainWindow", "Ứng Dụng Tư Vấn Du Lịch"))
+        self.chon_tinh_thanh.setTitle(_translate("MainWindow", "Chọn Tỉnh thành cần tư vấn "))
+        self.comboBox_tinhthanh.setItemText(0, _translate("MainWindow", "Hà Nội "))
+        self.comboBox_tinhthanh.setItemText(1, _translate("MainWindow", "Đà Nẵng"))
+        self.comboBox_tinhthanh.setItemText(2, _translate("MainWindow", "TP Hồ Chí Minh"))
+        self.tinh_thanh.setText(_translate("MainWindow", "Tỉnh Thành :"))
+        self.thong_tin.setTitle(_translate("MainWindow", "Thông tin "))
+        self.chi_tiet.setText(_translate("MainWindow", "Chi Tiết "))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
+
+    def open_url(self):
+        self.video_player = VideoPlayer()
+        self.video_player.show()
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
