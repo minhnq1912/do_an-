@@ -92,7 +92,7 @@ class TravelApp(QWidget):
         msgBox = QMessageBox(self)
         msgBox.setWindowTitle("Lời Khuyên")
         msgBox.setText(advice)
-        msgBox.setStyleSheet("QLabel{ color: Black; font-size: 25px;}")
+        msgBox.setStyleSheet("QLabel{ background-color: ; font-family:Times New Roman ; color: Black; font-size: 25px;}")
         msgBox.exec_()
 
     def show_information(self):
@@ -108,7 +108,7 @@ class TravelApp(QWidget):
         msgBox = QMessageBox(self)
         msgBox.setWindowTitle("Thông tin")
         msgBox.setText(information)
-        msgBox.setStyleSheet("QLabel{ color: Black; font-size: 25px;}")
+        msgBox.setStyleSheet("QLabel{ background-color: ; font-family:Times New Roman ;color: Black; font-size: 25px;}")
         msgBox.exec_()
 
 
