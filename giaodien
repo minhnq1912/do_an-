@@ -29,7 +29,8 @@ class TravelApp(QWidget):
 
         # create a label
         self.label = QLabel('Ứng Dụng Tư Vấn Du Lịch')
-        font = QtGui.QFont('Arial', 22)
+        font = QtGui.QFont('Roboto', 22)
+        self.label.setStyleSheet('font-family:Times New Roman;color: black; padding: 10px; border-radius: 5px;')
         font.setBold(True)
         self.label.setFont(font)
         # create a combo box with some destinations
@@ -37,28 +38,30 @@ class TravelApp(QWidget):
         self.comboBox.addItem('Thành phố Hồ Chí Minh')
         self.comboBox.addItem('Thành phố Đà Nẵng')
         self.comboBox.addItem('Thành phố Hà Nội')
-        self.comboBox.setFont(QFont('Arial', 14))
+        self.comboBox.setFont(QFont('Roboto', 14))
+        self.comboBox.setStyleSheet('font-family:Times New Roman;color: black; padding: 10px; border-radius: 5px;')
 
         self.label2 = QLabel('Chọn tỉnh thành:')
-        font = QtGui.QFont('Arial', 20)
+        font = QtGui.QFont('Roboto', 20)
+        self.label2.setStyleSheet('font-family: Times New Roman ;color: black; padding: 10px; border-radius: 5px;')
         font.setBold(True)
         self.label2.setFont(font)
 
         # create a button to get advice
         self.adviceButton = QPushButton('     Tư Vấn     ')
-        self.adviceButton.setFont(QFont('Arial', 14))
-        self.adviceButton.setStyleSheet("background-color: #4CAF50; color: black; padding: 10px; border-radius: 5px;")
+        self.adviceButton.setFont(QFont('', 14))
+        self.adviceButton.setStyleSheet("background-color: #4CAF50; font-family:Times New Roman; color: black; padding: 10px; border-radius: 5px;")
         self.adviceButton.clicked.connect(self.get_advice)
 
         # create a button to show information
         self.infoButton = QPushButton('   Thông Tin   ')
-        self.infoButton.setFont(QFont('Arial', 14))
-        self.infoButton.setStyleSheet("background-color: #4CAF50; color: black; padding: 10px; border-radius: 5px;")
+        self.infoButton.setFont(QFont('', 14))
+        self.infoButton.setStyleSheet("background-color: #4CAF50; color: black;font-family:Times New Roman; padding: 10px; border-radius: 5px;")
         self.infoButton.clicked.connect(self.show_information)
         #tạo nút video
         self.vButton = QPushButton('Video Chi Tiết')
-        self.vButton.setFont(QFont('Arial', 14))
-        self.vButton.setStyleSheet("background-color: #4CAF50; color: black; padding: 10px; border-radius: 5px;")
+        self.vButton.setFont(QFont('Roboto', 14))
+        self.vButton.setStyleSheet("background-color: #4CAF50;font-family:Times New Roman; color: black; padding: 10px; border-radius: 5px;")
         self.vButton.clicked.connect(self.open_url)
 
         # create a layout for the window
@@ -111,10 +114,31 @@ class TravelApp(QWidget):
         msgBox.setStyleSheet("QLabel{ background-color: ; font-family:Times New Roman ;color: Black; font-size: 25px;}")
         msgBox.exec_()
 
-
     def open_url(self):
-        self.video_player = VideoPlayer()
-        self.video_player.show()
+        destination = self.comboBox.currentText()
+        if destination == 'Thành phố Hồ Chí Minh':
+            city = 'hcm'
+        elif destination == 'Thành phố Đà Nẵng':
+            city = 'danang'
+        elif destination == 'Thành phố Hà Nội':
+            city = 'hanoi'
+        video_player = VideoPlayer(city)
+        video_player.show()
+
+    class VideoPlayer(QMainWindow):
+        def __init__(self, city):
+            super().__init__()
+
+            self.webview = QWebEngineView(self)
+            self.setCentralWidget(self.webview)
+            self.webview.setFixedSize(1000, 880)
+            if city == 'hcm':
+                self.webview.load(QUrl("https://www.youtube.com/embed/9H2SptcMzwI"))
+            elif city == 'danang':
+                self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
+            elif city == 'hanoi':
+                self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
+
 
 
         # create a message box to show information
