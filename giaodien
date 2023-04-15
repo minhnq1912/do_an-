@@ -1,19 +1,31 @@
-
 import sys
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, QMessageBox
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, \
+    QMessageBox, QMainWindow
 from PyQt5.QtGui import QFont, QColor, QPixmap, QPalette, QBrush, QPainter
 from pyqt5_plugins.examplebuttonplugin import QtGui
+
+
 
 
 class TravelApp(QWidget):
     def __init__(self):
         super().__init__()
+
         # set the title of the window
         self.setWindowTitle('Ứng Dụng Tư Vấn')
 
-        # set the background color of the window
-        self.setStyleSheet("background-color: #F8F8FF;")
+        # set the background image of the window
+        BACKGROUND_IMAGE_FILE_NAME = "hinh_anh/1672256784_746_60-khung-nen-dep-mien-phi-danh-cho-powerpoint.jpg"
+        palette = QPalette()
+        brush = QBrush(QPixmap(BACKGROUND_IMAGE_FILE_NAME))
+        palette.setBrush(QPalette.Background, brush)
+        self.setPalette(palette)
 
         # create a label
         self.label = QLabel('Ứng Dụng Tư Vấn Du Lịch')
@@ -22,10 +34,9 @@ class TravelApp(QWidget):
         self.label.setFont(font)
         # create a combo box with some destinations
         self.comboBox = QComboBox()
-        self.comboBox.addItem('Paris')
-        self.comboBox.addItem('London')
-        self.comboBox.addItem('Tokyo')
-        self.comboBox.addItem('New York')
+        self.comboBox.addItem('Thành phố Hồ Chí Minh')
+        self.comboBox.addItem('Thành phố Đà Nẵng')
+        self.comboBox.addItem('Thành phố Hà Nội')
         self.comboBox.setFont(QFont('Arial', 14))
 
         self.label2 = QLabel('Chọn tỉnh thành:')
@@ -34,16 +45,21 @@ class TravelApp(QWidget):
         self.label2.setFont(font)
 
         # create a button to get advice
-        self.adviceButton = QPushButton('Tư Vấn')
+        self.adviceButton = QPushButton('     Tư Vấn     ')
         self.adviceButton.setFont(QFont('Arial', 14))
         self.adviceButton.setStyleSheet("background-color: #4CAF50; color: black; padding: 10px; border-radius: 5px;")
         self.adviceButton.clicked.connect(self.get_advice)
 
         # create a button to show information
-        self.infoButton = QPushButton('Thông Tin')
+        self.infoButton = QPushButton('   Thông Tin   ')
         self.infoButton.setFont(QFont('Arial', 14))
         self.infoButton.setStyleSheet("background-color: #4CAF50; color: black; padding: 10px; border-radius: 5px;")
         self.infoButton.clicked.connect(self.show_information)
+        #tạo nút video
+        self.vButton = QPushButton('Video Chi Tiết')
+        self.vButton.setFont(QFont('Arial', 14))
+        self.vButton.setStyleSheet("background-color: #4CAF50; color: black; padding: 10px; border-radius: 5px;")
+        self.vButton.clicked.connect(self.open_url)
 
         # create a layout for the window
         self.layout = QVBoxLayout()
@@ -52,65 +68,79 @@ class TravelApp(QWidget):
         self.layout.addWidget(self.comboBox)
         self.layout.addWidget(self.adviceButton)
         self.layout.addWidget(self.infoButton)
+        self.layout.addWidget(self.vButton)
         self.layout.setAlignment(self.label, QtCore.Qt.AlignHCenter)
         self.layout.setAlignment(self.label2, QtCore.Qt.AlignHCenter)
         self.layout.setAlignment(self.comboBox, QtCore.Qt.AlignHCenter)
         self.layout.setAlignment(self.adviceButton, QtCore.Qt.AlignHCenter)
         self.layout.setAlignment(self.infoButton, QtCore.Qt.AlignHCenter)
+        self.layout.setAlignment(self.vButton, QtCore.Qt.AlignHCenter)
         # set the layout for the window
         self.setLayout(self.layout)
-
-
-
-
-
-        # set the background image
-        self.set_background()
-
-    def set_background(self):
-        # Tạo QPainter
-        painter = QPainter(self)
-
-        # Tạo QBrush với ảnh nền
-        brush = QBrush(QPixmap("hinh_anh/1672256784_746_60-khung-nen-dep-mien-phi-danh-cho-powerpoint.jpg"))
-
-        # Đặt QBrush làm nền cho cửa sổ chính
-        painter.setBrush(brush)
-        painter.drawRect(0, 0, self.width(), self.height())
-
-
-
-
 
     def get_advice(self):
         # get the selected destination from the combo box
         destination = self.comboBox.currentText()
 
         # give some advice based on the destination
-        if destination == 'Paris':
-            advice = 'Visit the Eiffel Tower and the Louvre Museum.'
-        elif destination == 'London':
-            advice = 'See the Big Ben and the Tower Bridge.'
-        elif destination == 'Tokyo':
-            advice = 'Explore the Tokyo Tower and the Shibuya Crossing.'
-        elif destination == 'New York':
-            advice = 'Check out the Statue of Liberty and Central Park.'
-
-        # create a message box to show the advice
-        QMessageBox.information(self, 'Advice', advice)
+        if destination == 'Thành phố Hồ Chí Minh':
+            advice = 'Gợi ý 1 ngày du lịch ở Sài Gòn.'
+        elif destination == 'Thành phố Đà Nẵng':
+            advice = 'Gợi ý 1 ngày du lịch ở Đà Nẵng.'
+        elif destination == 'Thành phố Hà Nội':
+            advice = 'Gợi ý 1 ngày du lịch ở Hà Nội.'
+        msgBox = QMessageBox(self)
+        msgBox.setWindowTitle("Lời Khuyên")
+        msgBox.setText(advice)
+        msgBox.setStyleSheet("QLabel{ color: Black; font-size: 25px;}")
+        msgBox.exec_()
 
     def show_information(self):
         destination = self.comboBox.currentText()
         # create a message box to show information
+        if destination == 'Thành phố Hồ Chí Minh':
+            information = 'Một trong những thành phố đáng sống nhất Việt Nam - Thành phố Hồ Chí Minh, hay còn gọi là Sài Gòn. Nổi tiếng với văn hóa và lịch sử phong phú, TP.HCM là điểm đến tuyệt vời để khám phá cảnh quan phong phú, ẩm thực độc đáo và truyền thống văn hóa độc đáo của miền Nam Việt Nam.TP.HCM là trung tâm kinh tế của Việt Nam và là địa điểm đến cho nhiều công ty quốc tế và du khách. Thành phố này có nhiều điểm đến thú vị để khám phá, từ Nhà thờ Đức Bà và Bảo tàng Lịch sử Việt Nam cho đến Chợ Bến Thành, Khu Phố Tây,... Bạn có thể tham gia các tour du lịch hoặc tự mình thám hiểm thành phố để khám phá những nét đẹp độc đáo của Sài Gòn.Thành phố Hồ Chí Minh được chia thành 22 quận huyện, trong đó có 1 thành phố, 16 quận, 5 huyện.'
+        elif destination == 'Thành phố Đà Nẵng':
+            information = 'Với vị trí là một trong ba trung tâm du lịch lớn trên bản đồ du lịch Việt Nam, Đà Nẵng thành phố biển xinh đẹp hiền hòa và mến khách, nơi mà bạn có thể dễ dàng đến được bằng cả đường bộ, đường hàng không và đường thủy. Một dấu ấn địa lý và lịch sử, điểm trung chuyển tiện lợi đến các di sản văn hóa thế giới như Huế, Mỹ Sơn, Hội An và khu dự trữ sinh quyển thế giới Cù Lao Chàm. Qua năm tháng Đà Nẵng đang càng khẳng định là một điểm đến hấp dẫn và lý tưởng đối với bạn bè và du khách năm châu. Bạn sẽ đi từ ngạc nhiên này đến ngạc nhiên khác trong hành trình khám phá các di tích văn hóa, lịch sử, danh lam thắng cảnh, đèo Hải Vân, Ngũ Hành Sơn, đến dải bờ biển tuyệt đẹp được tôn vinh là một trong sáu bãi biển đẹp nhất hành tinh. Đà Nẵng được xem là điểm trung chuyển quan trọng trên con đường di sản miền Trung, thành phố Đà Nẵng được bao bọc bởi 3 di sản văn hóa thế giới: Huế, Hội An, Mỹ Sơn. Xa hơn một chút nữa là di sản thiên nhiên thế giới Vườn Quốc gia Phong Nha – Kẻ Bàng và Động Thiên Đường. Chính vị trí này đã làm nổi rõ vai trò của thành phố Đà nẵng trong khu vực, đó là nơi đón tiếp, phục vụ, trung chuyển khách.'
+        elif destination == 'Thành phố Hà Nội':
+            information = 'Nằm trong vùng tam giác châu thổ sông Hồng có đất đai màu mỡ, trù phú, Hà Nội đã sớm là trung tâm chính trị và tôn giáo ngay từ những buổi đầu của lịch sử Việt Nam. Thăng Long-Hà Nội, kinh đô của Việt Nam, còn là nơi giao thoa của những nền văn hóa lớn. Từ năm 1902, nơi đây đã được mệnh danh là “Tiểu Paris Phương Đông” thời bấy giờ. Ngày nay, Hà Nội mang trong mình sự bí ẩn và quyến rũ bởi những di tích lịch sử, những dấu ấn về con người qua truyền thuyết huyền thoại, những khu phố, tường thành xưa, đường phố cũ, ngôi nhà cổ,… Đến với Hà Nội, du khách có dịp khám phá nhiều công trình kiến trúc văn hóa - nghệ thuật được xây dựng qua nhiều thế hệ trong suốt quá trình dựng nước và giữ nước, những danh thắng tự nhiên đẹp và quyến rũ. Du khách cũng sẽ rất thích thú khi được dạo quanh khu phố cổ sầm uất hay những ngõ phố nhỏ cổ kính trầm mặc bằng xích lô. Đất Hà Thành còn nổi tiếng với những làng nghề truyền thống, những sản phẩm thủ công đầy tinh xảo như gốm Bát Tràng, lụa Vạn Phúc, đồ đồng Ngũ Xã, sơn mài Hạ Thái... cùng những làng hoa, cây cảnh nổi tiếng như Nhật Tân, Quảng Bá, Nghi Tàm. Là trung tâm văn hóa của cả miền Bắc từ nhiều thế kỷ, tại Hà Nội có thể tìm thấy và thưởng thức những món ăn của nhiều vùng đất khác, nhưng ẩm thực nơi đây cũng có những nét riêng biệt. Đến với Hà Nội, người ta không thể bỏ qua cơ hội thưởng thức những món ăn đặc trưng như cốm làng Vòng, phở Hà Nội, bún chả, bún thang, bánh cuốn Thanh Trì, chả cá Lã Vọng, bánh tôm Hồ Tây,…'
+
+        msgBox = QMessageBox(self)
+        msgBox.setWindowTitle("Thông tin")
+        msgBox.setText(information)
+        msgBox.setStyleSheet("QLabel{ color: Black; font-size: 25px;}")
+        msgBox.exec_()
+
+
+    def open_url(self):
+        self.video_player = VideoPlayer()
+        self.video_player.show()
+
+
+        # create a message box to show information
+
+
+class VideoPlayer(QMainWindow):
+    def __init__(self, parent=None):
+        super(VideoPlayer, self).__init__(parent)
+
+        # Tạo widget QWebEngineView để hiển thị video
+        self.webview = QWebEngineView(self)
+        self.setCentralWidget(self.webview)
+        destination = self.comboBox.currentText()
+
+        # Nhúng link video vào QWebEngineView
         if destination == 'Paris':
-            information = 'Visit the Eiffel Tower and the Louvre Museum.'
+            self.webview.load(QUrl("https://www.youtube.com/embed/9H2SptcMzwI"))
         elif destination == 'London':
-            information = 'See the Big Ben and the Tower Bridge.'
+            self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
         elif destination == 'Tokyo':
-            information = 'Explore the Tokyo Tower and the Shibuya Crossing.'
+            self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
         elif destination == 'New York':
-            information = 'Check out the Statue of Liberty and Central Park.'
-        QMessageBox.information(self, 'Information', information)
+            self.webview.load(QUrl("https://www.youtube.com/embed/9H2SptcMzwI"))
+
+        # Đặt kích thước của QWebEngineView
+        self.webview.setFixedSize(1000, 880)
 
     # create an instance of the app
 
