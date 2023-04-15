@@ -125,48 +125,22 @@ class TravelApp(QWidget):
         video_player = VideoPlayer(city)
         video_player.show()
 
-    class VideoPlayer(QMainWindow):
-        def __init__(self, city):
-            super().__init__()
-
-            self.webview = QWebEngineView(self)
-            self.setCentralWidget(self.webview)
-            self.webview.setFixedSize(1000, 880)
-            if city == 'hcm':
-                self.webview.load(QUrl("https://www.youtube.com/embed/9H2SptcMzwI"))
-            elif city == 'danang':
-                self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
-            elif city == 'hanoi':
-                self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
-
-
-
-        # create a message box to show information
-
-
 class VideoPlayer(QMainWindow):
-    def __init__(self, parent=None):
-        super(VideoPlayer, self).__init__(parent)
+    def __init__(self, city):
+        super().__init__()
 
-        # Tạo widget QWebEngineView để hiển thị video
         self.webview = QWebEngineView(self)
         self.setCentralWidget(self.webview)
-        destination = self.comboBox.currentText()
-
-        # Nhúng link video vào QWebEngineView
-        if destination == 'Paris':
-            self.webview.load(QUrl("https://www.youtube.com/embed/9H2SptcMzwI"))
-        elif destination == 'London':
-            self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
-        elif destination == 'Tokyo':
-            self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
-        elif destination == 'New York':
-            self.webview.load(QUrl("https://www.youtube.com/embed/9H2SptcMzwI"))
-
-        # Đặt kích thước của QWebEngineView
         self.webview.setFixedSize(1000, 880)
+        if city == 'hcm':
+            self.webview.load(QUrl("https://www.youtube.com/embed/9H2SptcMzwI"))
+        elif city == 'danang':
+            self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
+        elif city == 'hanoi':
+            self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
 
-    # create an instance of the app
+
+
 
 
 app = QApplication(sys.argv)
