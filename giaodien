@@ -1,22 +1,20 @@
 import sys
 from PyQt5 import QtCore
-from PyQt5.QtCore import QUrl
+
+
 from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QUrl
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, \
-    QMessageBox, QMainWindow
-from PyQt5.QtGui import QFont, QColor, QPixmap, QPalette, QBrush, QPainter
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QComboBox, QPushButton, QMessageBox, QMainWindow
+from PyQt5.QtGui import QFont, QPixmap, QPalette, QBrush
 from pyqt5_plugins.examplebuttonplugin import QtGui
-
-
+from tailieu import *
 
 
 class TravelApp(QWidget):
     def __init__(self):
         super().__init__()
-
+        # set the fixed size of the window
+        self.setFixedSize(1049, 700)
         # set the title of the window
         self.setWindowTitle('Ứng Dụng Tư Vấn')
 
@@ -30,7 +28,7 @@ class TravelApp(QWidget):
         # create a label
         self.label = QLabel('Ứng Dụng Tư Vấn Du Lịch')
         font = QtGui.QFont('Roboto', 22)
-        self.label.setStyleSheet('font-family:Times New Roman;color: black; padding: 10px; border-radius: 5px;')
+        self.label.setStyleSheet('font-family:Times New Roman;color: while; padding: 10px; border-radius: 5px;')
         font.setBold(True)
         self.label.setFont(font)
         # create a combo box with some destinations
@@ -38,6 +36,8 @@ class TravelApp(QWidget):
         self.comboBox.addItem('Thành phố Hồ Chí Minh')
         self.comboBox.addItem('Thành phố Đà Nẵng')
         self.comboBox.addItem('Thành phố Hà Nội')
+        self.comboBox.addItem('Tỉnh Thanh Hóa ')
+        self.comboBox.addItem('Tỉnh Nghệ An ')
         self.comboBox.setFont(QFont('Roboto', 14))
         self.comboBox.setStyleSheet('font-family:Times New Roman;color: black; padding: 10px; border-radius: 5px;')
 
@@ -48,18 +48,18 @@ class TravelApp(QWidget):
         self.label2.setFont(font)
 
         # create a button to get advice
-        self.adviceButton = QPushButton('     Tư Vấn     ')
+        self.adviceButton = QPushButton('        Tư Vấn        ')
         self.adviceButton.setFont(QFont('', 14))
         self.adviceButton.setStyleSheet("background-color: #4CAF50; font-family:Times New Roman; color: black; padding: 10px; border-radius: 5px;")
         self.adviceButton.clicked.connect(self.get_advice)
 
         # create a button to show information
-        self.infoButton = QPushButton('   Thông Tin   ')
+        self.infoButton = QPushButton('      Thông Tin      ')
         self.infoButton.setFont(QFont('', 14))
         self.infoButton.setStyleSheet("background-color: #4CAF50; color: black;font-family:Times New Roman; padding: 10px; border-radius: 5px;")
         self.infoButton.clicked.connect(self.show_information)
         #tạo nút video
-        self.vButton = QPushButton('Video Chi Tiết')
+        self.vButton = QPushButton('Video Toàn Cảnh')
         self.vButton.setFont(QFont('Roboto', 14))
         self.vButton.setStyleSheet("background-color: #4CAF50;font-family:Times New Roman; color: black; padding: 10px; border-radius: 5px;")
         self.vButton.clicked.connect(self.open_url)
@@ -87,11 +87,15 @@ class TravelApp(QWidget):
 
         # give some advice based on the destination
         if destination == 'Thành phố Hồ Chí Minh':
-            advice = 'Gợi ý 1 ngày du lịch ở Sài Gòn.'
+            advice=((sai_gon()))
         elif destination == 'Thành phố Đà Nẵng':
-            advice = 'Gợi ý 1 ngày du lịch ở Đà Nẵng.'
+            advice =(da_nang())
         elif destination == 'Thành phố Hà Nội':
-            advice = 'Gợi ý 1 ngày du lịch ở Hà Nội.'
+            advice = (ha_noi())
+        elif destination == 'Tỉnh Thanh Hóa ':
+            advice = (thanh_hoa())
+        elif destination == 'Tỉnh Nghệ An ':
+            advice = (nghe_an())
         msgBox = QMessageBox(self)
         msgBox.setWindowTitle("Lời Khuyên")
         msgBox.setText(advice)
@@ -102,11 +106,15 @@ class TravelApp(QWidget):
         destination = self.comboBox.currentText()
         # create a message box to show information
         if destination == 'Thành phố Hồ Chí Minh':
-            information = 'Một trong những thành phố đáng sống nhất Việt Nam - Thành phố Hồ Chí Minh, hay còn gọi là Sài Gòn. Nổi tiếng với văn hóa và lịch sử phong phú, TP.HCM là điểm đến tuyệt vời để khám phá cảnh quan phong phú, ẩm thực độc đáo và truyền thống văn hóa độc đáo của miền Nam Việt Nam.TP.HCM là trung tâm kinh tế của Việt Nam và là địa điểm đến cho nhiều công ty quốc tế và du khách. Thành phố này có nhiều điểm đến thú vị để khám phá, từ Nhà thờ Đức Bà và Bảo tàng Lịch sử Việt Nam cho đến Chợ Bến Thành, Khu Phố Tây,... Bạn có thể tham gia các tour du lịch hoặc tự mình thám hiểm thành phố để khám phá những nét đẹp độc đáo của Sài Gòn.Thành phố Hồ Chí Minh được chia thành 22 quận huyện, trong đó có 1 thành phố, 16 quận, 5 huyện.'
+            information = thong_tin_thphcm()
         elif destination == 'Thành phố Đà Nẵng':
-            information = 'Với vị trí là một trong ba trung tâm du lịch lớn trên bản đồ du lịch Việt Nam, Đà Nẵng thành phố biển xinh đẹp hiền hòa và mến khách, nơi mà bạn có thể dễ dàng đến được bằng cả đường bộ, đường hàng không và đường thủy. Một dấu ấn địa lý và lịch sử, điểm trung chuyển tiện lợi đến các di sản văn hóa thế giới như Huế, Mỹ Sơn, Hội An và khu dự trữ sinh quyển thế giới Cù Lao Chàm. Qua năm tháng Đà Nẵng đang càng khẳng định là một điểm đến hấp dẫn và lý tưởng đối với bạn bè và du khách năm châu. Bạn sẽ đi từ ngạc nhiên này đến ngạc nhiên khác trong hành trình khám phá các di tích văn hóa, lịch sử, danh lam thắng cảnh, đèo Hải Vân, Ngũ Hành Sơn, đến dải bờ biển tuyệt đẹp được tôn vinh là một trong sáu bãi biển đẹp nhất hành tinh. Đà Nẵng được xem là điểm trung chuyển quan trọng trên con đường di sản miền Trung, thành phố Đà Nẵng được bao bọc bởi 3 di sản văn hóa thế giới: Huế, Hội An, Mỹ Sơn. Xa hơn một chút nữa là di sản thiên nhiên thế giới Vườn Quốc gia Phong Nha – Kẻ Bàng và Động Thiên Đường. Chính vị trí này đã làm nổi rõ vai trò của thành phố Đà nẵng trong khu vực, đó là nơi đón tiếp, phục vụ, trung chuyển khách.'
+            information = thong_tin_da_nang()
         elif destination == 'Thành phố Hà Nội':
-            information = 'Nằm trong vùng tam giác châu thổ sông Hồng có đất đai màu mỡ, trù phú, Hà Nội đã sớm là trung tâm chính trị và tôn giáo ngay từ những buổi đầu của lịch sử Việt Nam. Thăng Long-Hà Nội, kinh đô của Việt Nam, còn là nơi giao thoa của những nền văn hóa lớn. Từ năm 1902, nơi đây đã được mệnh danh là “Tiểu Paris Phương Đông” thời bấy giờ. Ngày nay, Hà Nội mang trong mình sự bí ẩn và quyến rũ bởi những di tích lịch sử, những dấu ấn về con người qua truyền thuyết huyền thoại, những khu phố, tường thành xưa, đường phố cũ, ngôi nhà cổ,… Đến với Hà Nội, du khách có dịp khám phá nhiều công trình kiến trúc văn hóa - nghệ thuật được xây dựng qua nhiều thế hệ trong suốt quá trình dựng nước và giữ nước, những danh thắng tự nhiên đẹp và quyến rũ. Du khách cũng sẽ rất thích thú khi được dạo quanh khu phố cổ sầm uất hay những ngõ phố nhỏ cổ kính trầm mặc bằng xích lô. Đất Hà Thành còn nổi tiếng với những làng nghề truyền thống, những sản phẩm thủ công đầy tinh xảo như gốm Bát Tràng, lụa Vạn Phúc, đồ đồng Ngũ Xã, sơn mài Hạ Thái... cùng những làng hoa, cây cảnh nổi tiếng như Nhật Tân, Quảng Bá, Nghi Tàm. Là trung tâm văn hóa của cả miền Bắc từ nhiều thế kỷ, tại Hà Nội có thể tìm thấy và thưởng thức những món ăn của nhiều vùng đất khác, nhưng ẩm thực nơi đây cũng có những nét riêng biệt. Đến với Hà Nội, người ta không thể bỏ qua cơ hội thưởng thức những món ăn đặc trưng như cốm làng Vòng, phở Hà Nội, bún chả, bún thang, bánh cuốn Thanh Trì, chả cá Lã Vọng, bánh tôm Hồ Tây,…'
+            information = thong_tin_ha_noi()
+        elif destination == 'Tỉnh Thanh Hóa ':
+            information = thong_tin_thanh_hoa()
+        elif destination == 'Tỉnh Nghệ An ':
+            information = thong_tin_nghe_an()
 
         msgBox = QMessageBox(self)
         msgBox.setWindowTitle("Thông tin")
@@ -115,41 +123,33 @@ class TravelApp(QWidget):
         msgBox.exec_()
 
     def open_url(self):
-        destination = self.comboBox.currentText()
-        if destination == 'Thành phố Hồ Chí Minh':
-            city = 'hcm'
-        elif destination == 'Thành phố Đà Nẵng':
-            city = 'danang'
-        elif destination == 'Thành phố Hà Nội':
-            city = 'hanoi'
-        video_player = VideoPlayer(city)
-        video_player.show()
+        self.video_player = VideoPlayer(self.comboBox)
+        self.video_player.show()
 
 class VideoPlayer(QMainWindow):
-    def __init__(self, city):
-        super().__init__()
+    def __init__(self, comboBox, parent=None):
+        super(VideoPlayer, self).__init__(parent)
+
+        self.comboBox = comboBox
 
         self.webview = QWebEngineView(self)
         self.setCentralWidget(self.webview)
-        self.webview.setFixedSize(1000, 880)
-        if city == 'hcm':
-            self.webview.load(QUrl("https://www.youtube.com/embed/9H2SptcMzwI"))
-        elif city == 'danang':
-            self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
-        elif city == 'hanoi':
-            self.webview.load(QUrl("https://www.youtube.com/embed/C49SVe8CjR0"))
+        self.webview.setFixedSize(1200, 880)
 
+        destination = self.comboBox.currentText()
+        if destination == 'Thành phố Hồ Chí Minh':
+            self.webview.load(QUrl("https://www.youtube.com/embed/KrWOCL0dbQ8"))
+        elif destination == 'Thành phố Đà Nẵng':
+            self.webview.load(QUrl("https://www.youtube.com/embed/UGqw3xmczI0"))
+        elif destination == 'Thành phố Hà Nội':
+            self.webview.load(QUrl("https://www.youtube.com/embed/FClS4ni4zfo"))
+        elif destination == 'Tỉnh Thanh Hóa ':
+            self.webview.load(QUrl("https://www.youtube.com/embed/nfUyb5eDi3E"))
+        elif destination == 'Tỉnh Nghệ An ':
+            self.webview.load(QUrl("https://www.youtube.com/embed/WNvaEIJDNQ0"))
 
-
-
-
-app = QApplication(sys.argv)
-# create a window for the app
-window = TravelApp()
-
-# show the window
-window.setGeometry(1000, 600, 1000, 500)
-window.show()
-
-# run the app
-sys.exit(app.exec_())
+if __name__ == '__main__':
+    app = QApplication([])
+    window = TravelApp()
+    window.show()
+    app.exec_()
