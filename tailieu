@@ -1,0 +1,109 @@
+def thanh_pho_ho_chi_minh():
+    return("hau dcbbbbvbmbmvfbvmb vm")
+
+
+def thanh_hoa():
+       return ("Thời gian nên đi tham quan ở Thanh Hóa:\n"
+               "1: Mùa xuân từ tháng 2 đến tháng 4\n"
+               "2: Mùa thu từ tháng 9 đến tháng 11\n\n"
+               "Các món ăn đặc sản của Thanh Hóa:\n"
+               "1: Bánh cuốn Thanh Hóa\n"
+               "2: Chả cá Lã Vọng\n"
+               "3: Nem chua Thanh Hóa\n\n"
+               "Các phương tiện di chuyển tới Thanh Hóa\n"
+               "1: Đi máy nay từ TP Hồ Chí Minh \n"
+               "2: Đi xe từ Hà Nội \n"
+               "3: Đi tàu \n"
+               "4: Đi dọc quốc lộ 1A\n")
+
+
+
+print(thanh_hoa())
+def ha_noi():
+    return("Thời gian nên đi tham quan ở Hà Nội:\n"
+           "1: Mùa thu từ tháng 8 đến tháng 11\n"
+           "2: Mùa xuân từ tháng 3 đến tháng 4.\n\n"
+           "Các món ăn đừng quên thưởng thức khi tới Hà Nội:\n"
+           "1: Bánh cốm\n"
+           "2: Phở\n\n"
+           "Các địa điểm nổi tiếng ở Hà Nội:\n"
+           "1: Hồ Gươm\n"
+           "2: Chùa Một Cột\n"
+           "3: Đền Ngọc Sơn\n"
+           "4: Tháp Rùa\n"
+           "5: Phố cổ Hà Nội\n"
+           "6: Bảo tàng dân tộc học Việt Nam")
+
+print(ha_noi())
+
+def da_nang():
+    return("Thời gian nên đi tham quan ở Đà Nẵng:\n"
+           "1: Mùa hè từ tháng 5 đến tháng 8\n"
+           "2: Mùa thu từ tháng 9 đến tháng 11\n\n"
+           "Các món ăn đừng quên thưởng thức khi tới Đà Nẵng:\n"
+           "1: Bún chả cá\n"
+           "2: Mì Quảng\n\n"
+           "Các địa điểm nổi tiếng ở Đà Nẵng:\n"
+           "1: Cầu Rồng\n"
+           "2: Ngũ Hành Sơn\n"
+           "3: Bà Nà Hills\n"
+           "4: Bán đảo Sơn Trà\n"
+           "5: Phố cổ Hội An\n"
+           "6: Sông Hàn")
+
+print(da_nang())
+
+def sai_gon():
+    return("Thời gian nên đi tham quan ở Sài Gòn:\n"
+           "1: Mùa khô từ tháng 12 đến tháng 4\n"
+           "2: Mùa mưa từ tháng 5 đến tháng 11\n\n"
+           "Các món ăn đừng quên thưởng thức khi tới Sài Gòn:\n"
+           "1: Bánh mì\n"
+           "2: Phở\n"
+           "3: Bánh xèo\n"
+           "4: Hủ tiếu\n\n"
+           "Các địa điểm nổi tiếng ở Sài Gòn:\n"
+           "1: Chợ Bến Thành\n"
+           "2: Dinh Độc Lập\n"
+           "3: Nhà hát thành phố\n"
+           "4: Thảo Cầm Viên\n"
+           "5: Công viên 23/9\n"
+           "6: Bảo tàng Hồ Chí Minh")
+
+print(sai_gon())
+
+def nghe_an():
+    return("Thời gian nên đi tham quan ở Nghệ An:\n"
+           "1: Mùa thu từ tháng 9 đến tháng 11\n"
+           "2: Mùa xuân từ tháng 2 đến tháng 4\n\n"
+           "Các món ăn đừng quên thưởng thức khi tới Nghệ An:\n"
+           "1: Bánh cuốn Thanh Hóa\n"
+           "2: Cháo lươn Nghệ An\n"
+           "3: Nem chua Nghệ An\n\n"
+           "Các địa điểm nổi tiếng ở Nghệ An:\n"
+           "1: Di tích Kim Liên\n"
+           "2: Làng hoa Sen Quang Bình\n"
+           "3: Đền Hùng - Sơn Tây\n"
+           "4: Khu di tích cố đô Hoa Lư\n"
+           "5: Khu sinh thái Quỳnh Lưu")
+
+print(nghe_an())
+
+def thong_tin_thphcm():
+    return("Hiện nay thành phố Hồ Chí Minh là trung tâm du lịch lớn nhất nước, thu hút hàng năm 70% lượng khách quốc tế đến Việt Nam. Sở dĩ như vậy vì ngoài cơ sở hạ tầng khá tốt, giao thông tương đối thuận tiện, thành phố là một nơi có tài nguyên du lịch phong phú. Nơi đây là một vùng đất gắn liền với lịch sử đấu tranh giành độc lập của dân tộc kể từ khi thực dân Pháp đặt chân lên Việt Nam. Thành phố Hồ Chí Minh cũng là nơi Chủ tịch Hồ Chí Minh vĩ đại ra đi tìm đường cứu nước (1911). Gắn liền với sự kiện đó, cảng Nhà Rồng và Bảo tàng Hồ Chí Minh là một di tích quan trọng, thu hút nhiều khách du lịch trong và ngoài nước. Các di tích cách mạng khác như địa đạo Củ Chi, hệ thống các bảo tàng, nhà hát, nhà văn hoá, các công trình kiến trúc thời Pháp là những điểm du lịch hấp dẫn. Gần đây thành phố đã đầu tư nhiều khu du lịch như Thanh Đa, Bình Qưới, nhiều khu vui chơi giải trí như Đầm Sen, Kỳ Hoà, công viên Nước, Suối Tiên,... đã thu hút và hấp dẫn du khách. Hiện nay, thành phố đang tiến hành tôn tạo các di tích lịch sử, các công trình kiến trúc cổ, đầu tư cho hệ thống bảo tàng, khôi phục nền văn hoá truyền thống kết hợp với tổ chức các lễ hội, khôi phục văn hoá miệt vườn, làng hoa để phát triển một cách vững chắc ngành du lịch của thành phố.")
+print(thong_tin_thphcm())
+
+def thong_tin_da_nang():
+    return("Đà Nẵng là một thành phố trực thuộc trung ương, nằm trong vùng Duyên hải Nam Trung Bộ. Là thành phố trung tâm và lớn nhất khu vực miền Trung - Tây Nguyên.Thành phố Đà Nẵng là thành phố tổng hợp đa ngành, đa lĩnh vực; trung tâm chính trị - kinh tế - xã hội với vai trò là trung tâm công nghiệp, tài chính, du lịch, dịch vụ, văn hóa, giáo dục - đào tạo, y tế chất lượng cao, khoa học - công nghệ, khởi nghiệp, đổi mới sáng tạo của khu vực Miền Trung - Tây Nguyên và cả nước; trung tâm tổ chức các sự kiện tầm khu vực và quốc tế. Thành phố Đà Nẵng đóng vai trò hạt nhân, quan trọng trong Vùng kinh tế trọng điểm miền Trung, đồng thời cũng là một trong 5 thành phố trực thuộc Trung ương ở Việt Nam, đô thị loại I, trung tâm cấp quốc gia, cùng với Hải Phòng và Cần Thơ.")
+print( thong_tin_da_nang())
+
+def thong_tin_ha_noi():
+    return("Hà Nội đã sớm trở thành một trung tâm chính trị, kinh tế và văn hóa ngay từ những buổi đầu của lịch sử Việt Nam. Với vai trò thủ đô, Hà Nội là nơi tập trung nhiều địa điểm văn hóa giải trí, công trình thể thao quan trọng của đất nước, đồng thời cũng là địa điểm được lựa chọn để tổ chức nhiều sự kiện chính trị và thể thao quốc tế. Đây là nơi tập trung nhiều làng nghề truyền thống, đồng thời cũng là một trong ba vùng tập trung nhiều hội lễ của miền Bắc Việt Nam. Nền ẩm thực Hà Nội với nhiều nét riêng biệt cũng là một trong những yếu tố thu hút khách du lịch tới thành phố. Năm 2019, Hà Nội là đơn vị hành chính Việt Nam xếp thứ 2 về tổng sản phẩm trên địa bàn (GRDP), xếp thứ 8 về GRDP bình quân đầu người và đứng thứ 41 về tốc độ tăng trưởng GRDP.")
+print(thong_tin_ha_noi())
+
+def thong_tin_thanh_hoa():
+    return("Thanh Hóa là một tỉnh thuộc vùng Bắc Trung Bộ Việt Nam.[4] Đồng thời là một tỉnh lớn của Việt Nam, có dân số đứng thứ 3, diện tích đứng thứ 5 cả nước.Thanh Hóa là một trong những trung tâm lớn của vùng Bắc Trung Bộ và cả nước về công nghiệp năng lượng và chế biến, chế tạo; nông nghiệp giá trị gia tăng cao; dịch vụ logistics, du lịch, giáo dục và đào tạo, y tế chuyên sâu và văn hoá, thể thao; một cực tăng trưởng mới cùng với Hà Nội, Hải Phòng và Quảng Ninh tạo thành tứ giác phát triển ở phía Bắc của Tổ quốc")
+print(thong_tin_thanh_hoa())
+def thong_tin_nghe_an():
+    return("Nghệ An là một tỉnh có diện  tích lớn  nằm ở phía Bắc miền Trung với cảnh quan thiên nhiên đẹp như tranh vẽ. Nghệ An còn là mảnh đất đã sản sinh nhiều danh nhân lịch sử, nhà khoa bảng, nhà khoa học, nhà văn hóa nổi danh như Mai Hắc Đế, nhà thơ Hồ Xuân Hương… Đặc biệt Nghệ An là quê hương của Chủ tịch Hồ Chí Minh, vị lãnh tụ vĩ đại của dân tộc Việt Nam, 1 nhà yêu nước lớn, một danh nhân bản hóa thế giới và anh hùng phóng thích dân tộc.")
+print(thong_tin_nghe_an())
