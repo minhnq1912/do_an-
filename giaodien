@@ -1,7 +1,5 @@
 import sys
 from PyQt5 import QtCore
-
-
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import QUrl
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QComboBox, QPushButton, QMessageBox, QMainWindow
@@ -27,7 +25,7 @@ class TravelApp(QWidget):
 
         # create a label
         self.label = QLabel('Ứng Dụng Tư Vấn Du Lịch')
-        font = QtGui.QFont('Roboto', 22)
+        font = QtGui.QFont('', 22)
         self.label.setStyleSheet('font-family:Times New Roman;color: while; padding: 10px; border-radius: 5px;')
         font.setBold(True)
         self.label.setFont(font)
@@ -42,7 +40,7 @@ class TravelApp(QWidget):
         self.comboBox.setStyleSheet('font-family:Times New Roman;color: black; padding: 10px; border-radius: 5px;')
 
         self.label2 = QLabel('Chọn tỉnh thành:')
-        font = QtGui.QFont('Roboto', 20)
+        font = QtGui.QFont('' ,20)
         self.label2.setStyleSheet('font-family: Times New Roman ;color: black; padding: 10px; border-radius: 5px;')
         font.setBold(True)
         self.label2.setFont(font)
@@ -59,8 +57,8 @@ class TravelApp(QWidget):
         self.infoButton.setStyleSheet("background-color: #4CAF50; color: black;font-family:Times New Roman; padding: 10px; border-radius: 5px;")
         self.infoButton.clicked.connect(self.show_information)
         #tạo nút video
-        self.vButton = QPushButton('Video Toàn Cảnh')
-        self.vButton.setFont(QFont('Roboto', 14))
+        self.vButton = QPushButton(' Video Toàn Cảnh ')
+        self.vButton.setFont(QFont('', 14))
         self.vButton.setStyleSheet("background-color: #4CAF50;font-family:Times New Roman; color: black; padding: 10px; border-radius: 5px;")
         self.vButton.clicked.connect(self.open_url)
 
@@ -140,7 +138,7 @@ class VideoPlayer(QMainWindow):
         if destination == 'Thành phố Hồ Chí Minh':
             self.webview.load(QUrl("https://www.youtube.com/embed/KrWOCL0dbQ8"))
         elif destination == 'Thành phố Đà Nẵng':
-            self.webview.load(QUrl("https://www.youtube.com/embed/UGqw3xmczI0"))
+            self.webview.load(QUrl("https://www.youtube.com/embed/nYwfl0K3r14"))
         elif destination == 'Thành phố Hà Nội':
             self.webview.load(QUrl("https://www.youtube.com/embed/FClS4ni4zfo"))
         elif destination == 'Tỉnh Thanh Hóa ':
